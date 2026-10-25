@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#3d4b5a">
-<title>물멍</title>
+<title>비멍</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
@@ -421,7 +421,7 @@ body.pc #place,body.pc #dock{opacity:0;pointer-events:none}
   <div class="langSw introLang" role="group" aria-label="Language">
     <button data-lang="ko">한국어</button><button data-lang="en">English</button>
   </div>
-  <h1 data-t="app">물멍</h1>
+  <h1 data-t="app">비멍</h1>
   <p data-th="introP">지금 세계 어딘가에 내리는 진짜 비를 따라가요.<br>빗소리를 들으며 가만히 쉬어요.</p>
   <small data-t="introEar">소리가 나와요. 이어폰을 끼면 더 좋아요.</small>
   <button class="solid" id="btnStart" data-t="start">비 보러 가기</button>
@@ -541,7 +541,7 @@ const store = {
 /* ════════ 언어 (한국어 / English) ════════ */
 const I18N = {
   ko: {
-    app:'물멍', finding:'비를 찾는 중', wait:'잠시만 기다려주세요.', demoTag:'미리보기용 예시 날씨예요', mineTag:'내 사진에 이곳의 비를 내리고 있어요',
+    app:'비멍', finding:'비를 찾는 중', wait:'잠시만 기다려주세요.', demoTag:'미리보기용 예시 날씨예요', mineTag:'내 사진에 이곳의 비를 내리고 있어요',
     menu:'메뉴', pickRain:'비 고르기', viewSwitch:'보는 방법 바꾸기', viewGlass:'창가에서', viewScene:'풍경으로', fogBtn:'김서림', next:'다음 비',
     soundBtn:'소리 켜고 끄기', close:'닫기', worldNow:'세계의 지금 비', lgRain:'비 오는 곳', lgDry:'맑은 곳', lgNight:'밤', rainCount:'지금 {n}곳에 비',
     'k.dawn':'아침', 'k.day':'낮', 'k.dusk':'노을', 'k.night':'밤',
@@ -578,7 +578,7 @@ const I18N = {
     sea:'바다', coast:'{n} 앞바다', openSea:'먼 바다'
   },
   en: {
-    app:'Mulmeong', finding:'Finding the rain', wait:'Just a moment.', demoTag:'Sample weather for preview', mineTag:'Rain from this place, falling on your photo',
+    app:'Bimeong', finding:'Finding the rain', wait:'Just a moment.', demoTag:'Sample weather for preview', mineTag:'Rain from this place, falling on your photo',
     menu:'Menu', pickRain:'Rain map', viewSwitch:'Change view', viewGlass:'Window', viewScene:'Outside', fogBtn:'Misty', next:'Next rain',
     soundBtn:'Sound on or off', close:'Close', worldNow:'Rain around the world, right now', lgRain:'Raining', lgDry:'Dry', lgNight:'Night', rainCount:'Raining in {n} places',
     'k.dawn':'Morning', 'k.day':'Day', 'k.dusk':'Sunset', 'k.night':'Night',
@@ -1958,10 +1958,10 @@ $('#btnSave').addEventListener('click', async () => {
   o.textAlign = 'right'; o.font = '700 '+(14*sc)+'px "Gowun Batang", serif'; o.fillText(t('app'), out.width - pad, out.height - pad);
   out.toBlob(async blob => {
     if(!blob){ toast(t('tSaveFail')); return; }
-    const file = new File([blob], 'mulmeong.png', {type:'image/png'});
+    const file = new File([blob], 'bimeong.png', {type:'image/png'});
     try{ if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:t('app')}); toast(t('tShared')); return; } }
     catch(e){ if(e && e.name==='AbortError') return; }
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mulmeong.png';
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'bimeong.png';
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     toast(t('tSaved'));
   }, 'image/png');
@@ -1988,7 +1988,7 @@ function captureScene(){
 
 
 
-/* ════════ 비 엽서 (구름멍의 엽서를 물멍에 맞게 고쳐 썼어요) ════════ */
+/* ════════ 비 엽서 (구름멍의 엽서를 비멍에 맞게 고쳐 썼어요) ════════ */
 // 지금 보는 비를 찍어서 → 분위기·우표·소인·장식·한 줄로 꾸미고 → 뒷면 MEMO → 엽서함(달력·목록)에 모아요.
 // 엽서는 이 폰 안(IndexedDB)에만 저장돼요.
 Object.assign(I18N.ko, {
@@ -2001,9 +2001,9 @@ Object.assign(I18N.ko, {
   'd.preset':'비 한 장', 'd.presetNote':'우표 + 소인 + 한 줄', 'd.stamp':'우표', 'd.mark':'날짜 소인', 'd.moon':'보름달 소인', 'd.tape0':'물빛 테이프', 'd.tape1':'크라프트 테이프', 'd.tape2':'분홍 테이프',
   'd.petals':'눌린 꽃잎', 'd.leaf':'말린 잎', 'd.stars':'반짝이', 'd.clip':'종이 클립', 'd.bow':'리본',
   'ink.muk':'먹', 'ink.nam':'남', 'ink.red':'빨강', 'tc.0':'먹', 'tc.1':'남색', 'tc.2':'흰색', 'tc.3':'갈색',
-  pcDefault:'오늘 내린 비를 너에게 보내요', pcSample:'오늘의 빗소리', pcStamp:'빗소리 한 장', pcPost:'물멍 우체국', pcPostEn:'MULMEONG POST', pcCloudPct:'{n}', pcMoonTop:'보름달 뜨는 밤',
+  pcDefault:'오늘 내린 비를 너에게 보내요', pcSample:'오늘의 빗소리', pcStamp:'빗소리 한 장', pcPost:'비멍 우체국', pcPostEn:'BIMEONG POST', pcCloudPct:'{n}', pcMoonTop:'보름달 뜨는 밤',
   pcEmpty:'아직 엽서가 없어요.<br>마음에 드는 비를 만나면 아래 <b>엽서</b> 버튼으로 남겨보세요.', pcNoDay:'이날은 엽서가 없어요.', pcMadeAt:'{t} 만듦', pcMadeFull:'{d} {t}에 만든 엽서',
-  pcThere:'그곳 시각 {t}', pcPhotoSky:'물멍', pcMine:'내 창밖 비',
+  pcThere:'그곳 시각 {t}', pcPhotoSky:'비멍', pcMine:'내 창밖 비',
   tPcSaved:'엽서함에 넣었어요.', tPcPreset:'우표와 소인, 한 줄을 제자리에 놓았어요.', tPcHave:'이미 붙어 있어요. 눌러서 옮겨보세요.', tPcMax:'장식은 다섯 개까지 붙일 수 있어요.',
   tPcLeave:'한 번 더 누르면 꾸미던 엽서를 두고 물가로 돌아가요.', tPcNeedDeco:'이 사진은 장식이나 분위기를 하나 이상 더해야 엽서로 만들 수 있어요.', tPcDeleted:'엽서를 지웠어요.',
   tPcSavedFront:'앞면을 사진으로 저장했어요.', tPcSavedBack:'뒷면을 사진으로 저장했어요.', tPcFail:'엽서를 저장하지 못했어요. 폰 저장 공간을 확인해주세요.', tPcSleep:'잠들기 중에는 엽서를 만들 수 없어요.',
@@ -2019,9 +2019,9 @@ Object.assign(I18N.en, {
   'd.preset':'A piece of rain', 'd.presetNote':'Stamp + postmark + a line', 'd.stamp':'Stamp', 'd.mark':'Postmark', 'd.moon':'Full moon mark', 'd.tape0':'Water tape', 'd.tape1':'Kraft tape', 'd.tape2':'Pink tape',
   'd.petals':'Pressed petals', 'd.leaf':'Dried leaf', 'd.stars':'Sparkles', 'd.clip':'Paper clip', 'd.bow':'Ribbon',
   'ink.muk':'Ink black', 'ink.nam':'Indigo', 'ink.red':'Red', 'tc.0':'Black', 'tc.1':'Indigo', 'tc.2':'White', 'tc.3':'Brown',
-  pcDefault:'Sending you today’s rain', pcSample:'Rain today', pcStamp:'a piece of rain', pcPost:'MULMEONG POST', pcPostEn:'A PIECE OF RAIN', pcCloudPct:'{n}', pcMoonTop:'FULL MOON NIGHT',
+  pcDefault:'Sending you today’s rain', pcSample:'Rain today', pcStamp:'a piece of rain', pcPost:'BIMEONG POST', pcPostEn:'A PIECE OF RAIN', pcCloudPct:'{n}', pcMoonTop:'FULL MOON NIGHT',
   pcEmpty:'No postcards yet.<br>When you meet a rain you love, tap <b>Postcard</b> to keep it.', pcNoDay:'No postcards on this day.', pcMadeAt:'made {t}', pcMadeFull:'Made {d}, {t}',
-  pcThere:'{t} there', pcPhotoSky:'Mulmeong', pcMine:'Rain on my window',
+  pcThere:'{t} there', pcPhotoSky:'Bimeong', pcMine:'Rain on my window',
   tPcSaved:'Kept in your postcard box.', tPcPreset:'Stamp, postmark and line are back in place.', tPcHave:'Already on the card. Tap it to move.', tPcMax:'You can add up to five decorations.',
   tPcLeave:'Tap again to leave this postcard and go back to the rain.', tPcNeedDeco:'Add a decoration or a mood to make this photo into a postcard.', tPcDeleted:'Postcard deleted.',
   tPcSavedFront:'Front saved as a photo.', tPcSavedBack:'Back saved as a photo.', tPcFail:'Couldn’t save the postcard. Please check your phone’s storage.', tPcSleep:'Postcards are paused during sleep.',
@@ -2180,7 +2180,7 @@ const PC = (function(){
     x.globalCompositeOperation='source-over'; x.fillStyle = INKS.red; x.textAlign='center'; x.textBaseline='middle';
     const top = I18N[lang==='en'?'en':'ko'].pcMoonTop;
     fitArc(x, top, R*.2, R*.72*2.6, '700'); arcText(x, top, R*.72, -Math.PI/2, true);
-    x.font = '700 '+(R*.15)+'px "Gowun Batang"'; arcText(x, (lang==='en'?'Mulmeong':'물멍')+' · '+new Date().getFullYear(), R*.72, Math.PI/2, false);
+    x.font = '700 '+(R*.15)+'px "Gowun Batang"'; arcText(x, (lang==='en'?'Bimeong':'비멍')+' · '+new Date().getFullYear(), R*.72, Math.PI/2, false);
     x.setTransform(1,0,0,1,0,0); distress(x,W,W,seed,1.1);
     const out = {c, ox:pad+R, oy:pad+R, R}; cacheSet(key,out); return out;
   }
@@ -2206,7 +2206,7 @@ const PC = (function(){
     x.strokeStyle = 'rgba(40,50,80,.25)'; x.lineWidth = Math.max(1, wpx*.006); x.strokeRect(m, m, iw, ih);
     x.fillStyle = '#fff'; x.shadowColor='rgba(0,0,0,.35)'; x.shadowBlur = wpx*.03;
     x.font = '700 '+(wpx*(card.lang==='en'?.075:.1))+'px "Gowun Batang"'; x.textAlign='left'; x.textBaseline='top';
-    x.fillText(card.lang==='en' ? 'Mulmeong' : '물멍', m*1.5, m*1.4);
+    x.fillText(card.lang==='en' ? 'Bimeong' : '비멍', m*1.5, m*1.4);
     x.shadowBlur = 0; x.fillStyle = '#34405f'; x.textAlign='center'; x.textBaseline='middle';
     const st = I18N[card.lang==='en'?'en':'ko'].pcStamp; x.font = '700 '+(wpx*.105)+'px "Gowun Batang"';
     const tw = x.measureText(st).width; if(tw > wpx*.62) x.font = '700 '+(wpx*.105*wpx*.62/tw)+'px "Gowun Batang"';
@@ -2345,7 +2345,7 @@ const PC = (function(){
     wrapLines(x, cd.memo, right-left-u*.02, cd.lang==='en').slice(0, lines.length).forEach((ln,i)=> x.fillText(ln, left + u*.01, lines[i] - u*.016));
     const I = cd.info, en = cd.lang==='en';
     x.font = (u*.028)+'px "Gowun Dodum"'; x.fillStyle='rgba(60,75,110,.65)'; x.textAlign='right';
-    x.fillText((en?'Mulmeong':'물멍') + ' · ' + dateStr(cd.at) + (I.live ? ' ' + I.time + ' · ' + I.city : ''), right, H - u*.055);
+    x.fillText((en?'Bimeong':'비멍') + ' · ' + dateStr(cd.at) + (I.live ? ' ' + I.time + ' · ' + I.city : ''), right, H - u*.055);
     x.textAlign='left';
   }
 
@@ -2559,7 +2559,7 @@ const PC = (function(){
   function loadFonts(){
     if(!fontsReady) fontsReady = Promise.race([
       Promise.all(FONTS.map(f => document.fonts.load('40px '+f.css, f.latin ? 'Rain' : '오늘의 빗소리 비'))
-        .concat([document.fonts.load('700 40px "Gowun Batang"', '물멍 우체국 0123'), document.fonts.load('20px "Gowun Dodum"', '추천 Best')])).catch(()=>{}),
+        .concat([document.fonts.load('700 40px "Gowun Batang"', '비멍 우체국 0123'), document.fonts.load('20px "Gowun Dodum"', '추천 Best')])).catch(()=>{}),
       new Promise(r => setTimeout(r, 2500))]);
     return fontsReady;
   }
@@ -2697,7 +2697,7 @@ const PC = (function(){
   $p('#pcVFlipB').addEventListener('click', () => { vFlip = !vFlip; $p('#pcVFlip').classList.toggle('back', vFlip); });
   $p('#pcVSave').addEventListener('click', async () => {
     const blob = vFlip ? VR.back : VR.front;
-    const name = 'mulmeong-' + dateStr(VR.at).replace(/\./g,'') + (vFlip ? '-back' : '') + '.jpg';
+    const name = 'bimeong-' + dateStr(VR.at).replace(/\./g,'') + (vFlip ? '-back' : '') + '.jpg';
     const file = new File([blob], name, {type:'image/jpeg'});
     try{ if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:t('app')}); return; } }catch(e){ if(e && e.name==='AbortError') return; }
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();

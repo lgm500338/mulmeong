@@ -1,4 +1,4 @@
-// 물멍 실시간 비 중계 함수 (Vercel Serverless Function)
+// 비멍 실시간 비 중계 함수 (Vercel Serverless Function)
 // 노르웨이 기상청(MET Norway) 자료로 명소마다 지금 비가 오는지 알려줘요.
 //   /api/rain?part=0 ~ 3      → 명소를 네 묶음으로 나눠, 한 묶음의 지금 날씨
 //   /api/rain?lat=..&lon=..   → 지도에서 누른 곳 한 군데의 지금 날씨
@@ -6,9 +6,9 @@
 // 그래서 사용자가 아무리 많아도 기상청에는 같은 곳을 20분에 한 번 정도만 물어봐요.
 
 // 기상청 이용 규칙: 요청마다 앱 이름과 연락처를 밝혀야 해요.
-// 저장소 이름을 mulmeong이 아닌 다른 이름으로 만들었다면 아래 주소도 바꿔주세요.
-const CONTACT = 'https://github.com/lgm500338/mulmeong';
-const USER_AGENT = `mulmeong/1.0 (${CONTACT})`;
+// 저장소 이름을 bimeong이 아닌 다른 이름으로 만들었다면 아래 주소도 바꿔주세요.
+const CONTACT = 'https://github.com/lgm500338/bimeong';
+const USER_AGENT = `bimeong/1.0 (${CONTACT})`;
 const PARTS = 4;
 
 // 명소 좌표 (앱의 index.html 안 PLACES_RAW 목록과 이름표가 같아야 해요)
